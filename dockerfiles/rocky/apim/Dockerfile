@@ -32,7 +32,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN yum install -y tzdata openssl ca-certificates fontconfig gzip tar nc unzip wget \
     && yum clean all
 
-ENV JAVA_VERSION=jdk-21.0.10+7
+ENV JAVA_VERSION=jdk-25.0.2+10
 ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"
 
@@ -77,7 +77,7 @@ ARG USER_GROUP_ID=10001
 ARG USER_HOME=/home/${USER}
 # build arguments for WSO2 product installation
 ARG WSO2_SERVER_NAME=wso2am
-ARG WSO2_SERVER_VERSION=4.7.0-beta
+ARG WSO2_SERVER_VERSION=4.7.0
 ARG WSO2_SERVER_ZIP_VERSION=${WSO2_SERVER_VERSION}
 ARG WSO2_SERVER_REPOSITORY=product-apim
 ARG WSO2_SERVER=${WSO2_SERVER_NAME}-${WSO2_SERVER_VERSION}
