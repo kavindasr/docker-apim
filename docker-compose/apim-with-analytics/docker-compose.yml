@@ -36,7 +36,7 @@ services:
   api-manager:
     build: ./dockerfiles/apim
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:9763/services/Version"]
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/localhost/9763"]
       interval: 10s
       start_period: 180s
       retries: 20

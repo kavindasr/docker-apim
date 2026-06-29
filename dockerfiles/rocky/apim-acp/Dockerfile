@@ -29,7 +29,7 @@ RUN yum clean all && \
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # install dependencies
-RUN yum install -y tzdata openssl ca-certificates fontconfig gzip tar nc unzip wget \
+RUN yum install -y tzdata ca-certificates gzip tar unzip wget \
     && yum clean all
 
 ENV JAVA_VERSION=jdk-25.0.2+10
@@ -114,8 +114,9 @@ RUN \
     && cp -r ${WSO2_SERVER_HOME}/repository/deployment/server/executionplans ${USER_HOME}/wso2-tmp \
     && rm -f ${WSO2_SERVER_ZIP}.zip
 
-# remove unnecesary packages
-RUN yum remove -y unzip wget
+# remove build-time-only packages to slim the final image
+RUN yum remove -y unzip wget \
+    && yum clean all
 
 # set the user and work directory
 USER ${USER_ID}

@@ -22,7 +22,7 @@ FROM alpine:3.23
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # install dependencies
-RUN apk add --no-cache tzdata musl-locales musl-locales-lang bash libxml2-utils netcat-openbsd \
+RUN apk add --no-cache tzdata musl-locales musl-locales-lang bash \
     && rm -rf /var/cache/apk/*
 
 ENV JAVA_VERSION=jdk-25.0.2+10
@@ -107,9 +107,6 @@ RUN \
     && chown wso2carbon:wso2 -R ${USER_HOME}/solr \
     && cp -r ${WSO2_SERVER_HOME}/repository/deployment/server/executionplans ${USER_HOME}/wso2-tmp \
     && rm -f ${WSO2_SERVER_ZIP}.zip
-
-# remove unnecesary packages
-RUN apk del netcat-openbsd
 
 # set the user and work directory
 USER ${USER_ID}
